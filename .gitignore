@@ -1,0 +1,11 @@
+#ingnroe build file
+**/bin/
+
+#ignore object file
+**/obj/
+
+#ingnore visual metadata
+.vs/
+
+#ingnore Resourse for Lesson
+LessonResources/
