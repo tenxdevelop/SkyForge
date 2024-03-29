@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using SkyForgeEditor.View.Windows;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,6 +20,30 @@ namespace SkyForgeEditor
         public MainWindow()
         {
             InitializeComponent();
+            Loaded += OnLoadedEvent;
+
         }
+
+
+        private void OnLoadedEvent(object sender, RoutedEventArgs e)
+        {
+            Loaded -= OnLoadedEvent;
+            LoadProjectWindow();
+        }
+
+        private void LoadProjectWindow()
+        {
+            var projectBrowserWindow = new ProjectBrowserWindow();
+
+            if (projectBrowserWindow.ShowDialog() == false)
+            {
+                Application.Current.Shutdown();
+            }
+            else
+            {
+
+            }
+        }
+
     }
 }

@@ -11,4 +11,11 @@
     <BaseOutputPath>..\bin\</BaseOutputPath>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\" />
+    <Folder Include="Services\" />
+    <Folder Include="Model\" />
+    <Folder Include="Extentions\" />
+  </ItemGroup>
+
 </Project>
