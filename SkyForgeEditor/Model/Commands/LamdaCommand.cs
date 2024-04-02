@@ -1,6 +1,5 @@
 ﻿using SkyForgeEditor.Model.Commands.Base;
 
-
 namespace SkyForgeEditor.Model.Commands
 {
     public class LamdaCommand : BaseCommand
@@ -8,13 +7,13 @@ namespace SkyForgeEditor.Model.Commands
         private Action<object> m_execute;
         private Func<object, bool> m_canExecute;
 
-        public LamdaCommand(Action<object> execute, Func<object, bool> canExecute)
+        public LamdaCommand(Action<object> execute, Func<object, bool> canExecute = null)
         {
             m_execute = execute;
             m_canExecute = canExecute;
         }
 
-        public override bool CanExecute(object? parameter) => m_canExecute(parameter);
+        public override bool CanExecute(object? parameter) => m_canExecute?.Invoke(parameter) ?? true;
 
         public override void Execute(object? parameter) => m_execute(parameter);
     }

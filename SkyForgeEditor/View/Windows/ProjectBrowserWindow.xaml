@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:SkyForgeEditor.ViewModel"
         xmlns:local="clr-namespace:SkyForgeEditor.View.Windows"
         mc:Ignorable="d"
         ResizeMode="NoResize"
@@ -11,6 +12,9 @@
         Background="#434343"
         Height="520" 
         Width="880">
+    <Window.DataContext>
+        <vm:ProjectBrowserWindowViewModel/>
+    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -22,7 +26,7 @@
         
         <Canvas Grid.Row="0" Background="#444444">
             <WrapPanel Margin="0, 1, 0, 0" ItemHeight="29" ItemWidth="100" Orientation="Horizontal">
-                <Button Margin="0, 0, 0, 0" Content="Projects">
+                <Button Margin="0, 0, 0, 0" Content="Projects" Command="{Binding OpenProjectWindow}">
                     <Button.Background>
                         <SolidColorBrush Color="#565656" />
                     </Button.Background>
@@ -30,7 +34,7 @@
                         <SolidColorBrush Color="#FFFF"/>
                     </Button.Foreground>
                 </Button>
-                <Button Margin="1, 0, 0, 0" Content="Create Project" >
+                <Button Margin="1, 0, 0, 0" Content="Create Project" Command="{Binding OpenCreateProjectWindow}">
                     <Button.Background>
                         <SolidColorBrush Color="#565656" />
                     </Button.Background>
@@ -40,7 +44,7 @@
                 </Button>
             </WrapPanel>
         </Canvas>
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0, 0, 0, 0">
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="{Binding PositionWidnowStack}">
             <Grid Width="880" Background="DarkGray">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="14*" />
