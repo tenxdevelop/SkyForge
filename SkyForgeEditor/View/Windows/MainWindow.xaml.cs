@@ -39,10 +39,6 @@ namespace SkyForgeEditor
             {
                 Application.Current.Shutdown();
             }
-            else
-            {
-
-            }
         }
 
     }
