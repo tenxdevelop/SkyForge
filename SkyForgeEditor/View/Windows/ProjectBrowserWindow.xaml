@@ -73,10 +73,22 @@
                     <RowDefinition Height="14*" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <Canvas Grid.Row="0" Grid.Column="0" Background="DarkGray">
-                    <TextBlock Text="Create Project" />
-                </Canvas>
+                <ListBox Grid.Row="0" Grid.Column="0" Background="DarkGray" ItemsSource="{Binding ProjectTempaltes}" x:Name="templateListBox">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{Binding Icon}" Margin="0, 0, 5, 0 "/>
+                                <TextBlock Text="{Binding ProjectType}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
                 <Canvas Grid.Row="0" Grid.Column="1">
+                    <Border Width="220" Height="150" Canvas.Left="10" Canvas.Top="15">
+                        <Border.Background>
+                            <ImageBrush ImageSource="{Binding Path=SelectedItem.Screenshot, ElementName=templateListBox}"/>
+                        </Border.Background>
+                    </Border>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10, 230,0,0">
                         <TextBlock Text="Name" Width="35" Foreground="#FFFF" />
                         <TextBox Width="189" Background="DarkGray" Text="{Binding NewProjectName}" Foreground="#FFFF"/>
