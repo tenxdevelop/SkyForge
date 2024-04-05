@@ -18,5 +18,20 @@ namespace SkyForgeEditor.Extentions
                 //TODO: get the log error
             }
         }
+
+        public static T? FromFile<T>(string path)
+        {
+            try
+            {
+                using var filesystem = new FileStream(path, FileMode.Open);
+                var serializer = new DataContractSerializer(typeof(T));
+                return (T?)serializer.ReadObject(filesystem);
+            }
+            catch
+            {
+                //TODO: get the log error
+                return default(T);
+            }
+        }
     }
 }
