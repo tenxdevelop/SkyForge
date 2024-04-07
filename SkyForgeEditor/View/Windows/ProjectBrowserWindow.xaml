@@ -73,7 +73,8 @@
                     <RowDefinition Height="14*" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <ListBox Grid.Row="0" Grid.Column="0" Background="DarkGray" ItemsSource="{Binding ProjectTempaltes}" x:Name="templateListBox">
+                <ListBox Grid.Row="0" Grid.Column="0" Background="DarkGray" ItemsSource="{Binding ProjectTempaltes}" 
+                         x:Name="templateListBox" SelectedIndex="0">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -91,11 +92,11 @@
                     </Border>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10, 230,0,0">
                         <TextBlock Text="Name" Width="35" Foreground="#FFFF" />
-                        <TextBox Width="189" Background="DarkGray" Text="{Binding NewProjectName}" Foreground="#FFFF"/>
+                        <TextBox Width="189" Background="DarkGray" Text="{Binding NewProjectName, UpdateSourceTrigger=PropertyChanged}" Foreground="#FFFF"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10, 260,0,0">
                         <TextBlock Text="Path" Width="35" Foreground="#FFFF" />
-                        <TextBox Width="140" Background="DarkGray" Text="{Binding NewProjectPath}" Foreground="#FFFF"/>
+                        <TextBox Width="140" Background="DarkGray" Text="{Binding NewProjectPath, UpdateSourceTrigger=PropertyChanged}" Foreground="#FFFF"/>
                         <Button Margin="4, 0, 0, 0" Content="Browse" Height="18" Width="45">
                             <Button.Background>
                                 <SolidColorBrush Color="#565656" />
@@ -105,9 +106,10 @@
                             </Button.Foreground>
                         </Button>
                     </StackPanel>
+                    <TextBlock Text="{Binding ErrorMassageValidateProjectPath}" Margin="10, 290, 0, 0" />
                 </Canvas>
                 <Canvas Grid.Row="1" Grid.ColumnSpan="2">
-                    <Button Margin="780, 2, 0, 0" Content="Create" Height="25" Width="80">
+                    <Button Margin="780, 2, 0, 0" Content="Create" Height="25" Width="80" IsEnabled="{Binding IsValidProjectPath}">
                         <Button.Background>
                             <SolidColorBrush Color="#565656" />
                         </Button.Background>

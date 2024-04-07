@@ -19,8 +19,10 @@ namespace SkyForgeEditor.ViewModel
 
         public ReadOnlyObservableCollection<ProjectTemplate>? ProjectTempaltes { get; private set; }
         public Thickness PositionWidnowStack { get => m_positionWindowStack; set => Set(ref m_positionWindowStack, value); }
-        public string NewProjectName { get => m_newProjectName; set => Set(ref m_newProjectName, value); }
-        public string NewProjectPath { get => m_newProjectPath; set => Set(ref m_newProjectPath, value); }
+        public string NewProjectName { get => m_newProjectName; set{ Set(ref m_newProjectName, value); ValidateProjectPath(); } }
+        public string NewProjectPath { get => m_newProjectPath; set{ Set(ref m_newProjectPath, value); ValidateProjectPath(); } }
+        public string ErrorMassageValidateProjectPath { get => m_errorMassageValidateProjectPath; set => Set(ref m_errorMassageValidateProjectPath, value); }
+        public bool IsValidProjectPath { get => m_isValidPath; set => Set(ref m_isValidPath, value); }
         public ICommand OpenCreateProjectWindow { get; }
         public ICommand OpenProjectWindow { get; }
 
@@ -30,15 +32,20 @@ namespace SkyForgeEditor.ViewModel
         private Thickness m_positionWindowStack;
         private string m_newProjectName;
         private string m_newProjectPath;
+        private string m_errorMassageValidateProjectPath;
+        private bool m_isValidPath;
 
         public ProjectBrowserWindowViewModel()
         {
 
-            m_positionWindowStack = POSITION_WINDOW_CREATE_PROJECT;
+            m_positionWindowStack = POSITION_WINDOW_PROJECT;
             m_newProjectName = "NewProject";
+            m_isValidPath = true;
+            m_errorMassageValidateProjectPath = string.Empty;
             m_newProjectPath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\SkyForgeProject\";
 
             LoadTemplateProject();
+            ValidateProjectPath();
 
             OpenCreateProjectWindow = new LamdaCommand(OpenCreateProjectWindowExecuteCommand);
             OpenProjectWindow = new LamdaCommand(OpenProjectWindowExecuteCommand);
@@ -71,6 +78,43 @@ namespace SkyForgeEditor.ViewModel
                 template.ProjectFilePath = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(file), template.ProjectFile));
                 m_projectTemplates.Add(template);
             }
+        }
+
+        private bool ValidateProjectPath()
+        {
+            var path = m_newProjectPath;
+            if (!Path.EndsInDirectorySeparator(path))
+                path += @"\";
+            path += $@"{m_newProjectName}\";
+            IsValidProjectPath = false;
+
+            if (string.IsNullOrEmpty(m_newProjectPath.Trim()))
+            {
+                ErrorMassageValidateProjectPath = "Select a valid project path.";
+            }
+            else if (m_newProjectPath.IndexOfAny(Path.GetInvalidPathChars()) != -1)
+            {
+                ErrorMassageValidateProjectPath = "Invalid chareacter(s) used in project path.";
+            }
+            else if (string.IsNullOrEmpty(m_newProjectName.Trim()))
+            {
+                ErrorMassageValidateProjectPath = "Type in a project name.";
+            }
+            else if (m_newProjectName.IndexOfAny(Path.GetInvalidFileNameChars()) != -1)
+            {
+                ErrorMassageValidateProjectPath = "Invalid character(s) used in project name.";
+            }
+            else if (Directory.Exists(m_newProjectPath) && Directory.EnumerateFileSystemEntries(m_newProjectPath).Any())
+            {
+                ErrorMassageValidateProjectPath = "Selected project folder already exists and is not empty.";
+            }
+            else
+            {
+                ErrorMassageValidateProjectPath = string.Empty;
+                IsValidProjectPath = true;
+            }
+            
+            return m_isValidPath;
         }
     }
 }
