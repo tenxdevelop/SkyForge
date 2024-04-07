@@ -1,7 +1,7 @@
 <ProjectTemplate xmlns="http://schemas.datacontract.org/2004/07/SkyForgeEditor.Model" 
                  xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
   <Folders xmlns:a="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
-    <a:string>.skyforge</a:string>
+    <a:string>.Skyforge</a:string>
     <a:string>Resources</a:string>
     <a:string>Scripts</a:string>
   </Folders>
