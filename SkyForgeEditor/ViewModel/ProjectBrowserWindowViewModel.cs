@@ -25,7 +25,7 @@ namespace SkyForgeEditor.ViewModel
         public bool IsValidProjectPath { get => m_isValidPath; set => Set(ref m_isValidPath, value); }
         public ICommand OpenCreateProjectWindow { get; }
         public ICommand OpenProjectWindow { get; }
-
+        public ICommand CreateProject { get; }
         public ICommand CancelCreateProjectCommand { get; }
 
         private ObservableCollection<ProjectTemplate>? m_projectTemplates;
@@ -34,15 +34,15 @@ namespace SkyForgeEditor.ViewModel
         private string m_newProjectPath;
         private string m_errorMassageValidateProjectPath;
         private bool m_isValidPath;
-
-        public ProjectBrowserWindowViewModel()
+        private DependencyObject m_dependencyWindow;
+        public ProjectBrowserWindowViewModel(DependencyObject dependency)
         {
-
+            m_dependencyWindow = dependency;
             m_positionWindowStack = POSITION_WINDOW_PROJECT;
             m_newProjectName = "NewProject";
             m_isValidPath = true;
             m_errorMassageValidateProjectPath = string.Empty;
-            m_newProjectPath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\SkyForgeProject\";
+            m_newProjectPath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\SkyForge Projects\";
 
             LoadTemplateProject();
             ValidateProjectPath();
@@ -50,6 +50,52 @@ namespace SkyForgeEditor.ViewModel
             OpenCreateProjectWindow = new LamdaCommand(OpenCreateProjectWindowExecuteCommand);
             OpenProjectWindow = new LamdaCommand(OpenProjectWindowExecuteCommand);
             CancelCreateProjectCommand = new LamdaCommand(OpenProjectWindowExecuteCommand);
+            CreateProject = new LamdaCommand(CreateProjectCommand);
+        }
+
+        public string CreateProjects(ProjectTemplate template)
+        {
+            if (!ValidateProjectPath())
+                return string.Empty;
+
+            if (!Path.EndsInDirectorySeparator(m_newProjectPath))
+                NewProjectPath += @"\";
+            var path = $@"{m_newProjectPath}{m_newProjectName}\";
+            try
+            {
+                if(!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                foreach(var folder in template.Folders)
+                    Directory.CreateDirectory(Path.GetFullPath(Path.Combine(Path.GetDirectoryName(path), folder)));
+
+                var dirInfo = new DirectoryInfo(path + @".Skyforge");
+                dirInfo.Attributes |= FileAttributes.Hidden;
+                File.Copy(template.IconFilePath, Path.GetFullPath(Path.Combine(dirInfo.FullName, "Icon.png")));
+                File.Copy(template.ScreenshotFilePath, Path.GetFullPath(Path.Combine(dirInfo.FullName, "Screenshot.png")));
+
+                var projectXml = File.ReadAllText(template.ProjectFilePath);
+                projectXml = string.Format(projectXml, NewProjectName, NewProjectPath);
+                var projectPath = Path.GetFullPath(Path.Combine(path, $"{NewProjectName}{ProjectViewModel.Extentions}"));
+                File.WriteAllText(projectPath, projectXml);
+                return path;
+            }
+            catch (Exception ex)
+            {
+                //TODO get the log error
+
+                return string.Empty;
+            }
+        }
+
+        private void CreateProjectCommand(object sender)
+        {
+            var template = sender as ProjectTemplate;
+            var projectPath = CreateProjects(template);
+            var dialogResult = !string.IsNullOrEmpty(projectPath);
+            var win = Window.GetWindow(m_dependencyWindow);
+            win.DialogResult = dialogResult;
+            win.Close();
         }
 
         private void OpenCreateProjectWindowExecuteCommand(object sender)
@@ -104,7 +150,7 @@ namespace SkyForgeEditor.ViewModel
             {
                 ErrorMassageValidateProjectPath = "Invalid character(s) used in project name.";
             }
-            else if (Directory.Exists(m_newProjectPath) && Directory.EnumerateFileSystemEntries(m_newProjectPath).Any())
+            else if (Directory.Exists(path) && Directory.EnumerateFileSystemEntries(path).Any())
             {
                 ErrorMassageValidateProjectPath = "Selected project folder already exists and is not empty.";
             }

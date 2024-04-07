@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SkyForgeEditor.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,7 +22,9 @@ namespace SkyForgeEditor.View.Windows
     {
         public ProjectBrowserWindow()
         {
+            DataContext = new ProjectBrowserWindowViewModel(this);
             InitializeComponent();
+
         }
     }
 }

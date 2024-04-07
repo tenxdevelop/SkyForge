@@ -12,9 +12,6 @@
         Background="#434343"
         Height="520" 
         Width="880">
-    <Window.DataContext>
-        <vm:ProjectBrowserWindowViewModel/>
-    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -23,7 +20,6 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="14*" />
         </Grid.RowDefinitions>
-        
         <Canvas Grid.Row="0" Background="#444444">
             <WrapPanel Margin="0, 1, 0, 0" ItemHeight="29" ItemWidth="100" Orientation="Horizontal">
                 <Button Margin="0, 0, 0, 0" Content="Projects" Command="{Binding OpenProjectWindow}">
@@ -109,7 +105,7 @@
                     <TextBlock Text="{Binding ErrorMassageValidateProjectPath}" Margin="10, 290, 0, 0" />
                 </Canvas>
                 <Canvas Grid.Row="1" Grid.ColumnSpan="2">
-                    <Button Margin="780, 2, 0, 0" Content="Create" Height="25" Width="80" IsEnabled="{Binding IsValidProjectPath}">
+                    <Button Margin="780, 2, 0, 0" Content="Create" Height="25" Width="80" IsEnabled="{Binding IsValidProjectPath}" Command="{Binding CreateProject}" CommandParameter="{Binding ElementName=templateListBox, Path=SelectedItem}">
                         <Button.Background>
                             <SolidColorBrush Color="#565656" />
                         </Button.Background>
