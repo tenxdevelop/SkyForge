@@ -105,7 +105,7 @@
                     <TextBlock Text="{Binding ErrorMassageValidateProjectPath}" Margin="10, 290, 0, 0" />
                 </Canvas>
                 <Canvas Grid.Row="1" Grid.ColumnSpan="2">
-                    <Button Margin="780, 2, 0, 0" Content="Create" Height="25" Width="80" IsEnabled="{Binding IsValidProjectPath}" Command="{Binding CreateProject}" CommandParameter="{Binding ElementName=templateListBox, Path=SelectedItem}">
+                    <Button Margin="780, 2, 0, 0" Content="Create" Height="25" Width="80" IsEnabled="{Binding IsValidProjectPath}" Command="{Binding CreateProjectCommand}" CommandParameter="{Binding ElementName=templateListBox, Path=SelectedItem}">
                         <Button.Background>
                             <SolidColorBrush Color="#565656" />
                         </Button.Background>
@@ -113,7 +113,7 @@
                             <SolidColorBrush Color="#FFFF"/>
                         </Button.Foreground>
                     </Button>
-                    <Button Margin="695, 2, 0, 0" Content="Cancel" Height="25" Width="80" Command="{Binding CancelCreateProjectCommand}">
+                    <Button Margin="695, 2, 0, 0" Content="Cancel" Height="25" Width="80" Command="{Binding OpenProjectWindow}">
                         <Button.Background>
                             <SolidColorBrush Color="#565656" />
                         </Button.Background>
@@ -121,7 +121,6 @@
                             <SolidColorBrush Color="#FFFF"/>
                         </Button.Foreground>
                     </Button>
-
                 </Canvas>
             </Grid>
         </StackPanel>

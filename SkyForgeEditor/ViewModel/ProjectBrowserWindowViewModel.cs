@@ -11,9 +11,7 @@ namespace SkyForgeEditor.ViewModel
 {
     internal class ProjectBrowserWindowViewModel : BaseViewModel
     {
-        private readonly Thickness POSITION_WINDOW_CREATE_PROJECT = new Thickness(-880, 0, 0, 0);
-        private readonly Thickness POSITION_WINDOW_PROJECT = new Thickness(0, 0, 0, 0);
-
+        
         // TODO: get the path from the instalkation location 
         private readonly string m_templatePath = @"..\..\..\SkyForgeEditor\Data\ProjectTemplates";
 
@@ -25,8 +23,7 @@ namespace SkyForgeEditor.ViewModel
         public bool IsValidProjectPath { get => m_isValidPath; set => Set(ref m_isValidPath, value); }
         public ICommand OpenCreateProjectWindow { get; }
         public ICommand OpenProjectWindow { get; }
-        public ICommand CreateProject { get; }
-        public ICommand CancelCreateProjectCommand { get; }
+        public ICommand CreateProjectCommand { get; }
 
         private ObservableCollection<ProjectTemplate>? m_projectTemplates;
         private Thickness m_positionWindowStack;
@@ -38,7 +35,7 @@ namespace SkyForgeEditor.ViewModel
         public ProjectBrowserWindowViewModel(DependencyObject dependency)
         {
             m_dependencyWindow = dependency;
-            m_positionWindowStack = POSITION_WINDOW_PROJECT;
+            m_positionWindowStack = new Thickness(0);
             m_newProjectName = "NewProject";
             m_isValidPath = true;
             m_errorMassageValidateProjectPath = string.Empty;
@@ -47,13 +44,12 @@ namespace SkyForgeEditor.ViewModel
             LoadTemplateProject();
             ValidateProjectPath();
 
-            OpenCreateProjectWindow = new LamdaCommand(OpenCreateProjectWindowExecuteCommand);
-            OpenProjectWindow = new LamdaCommand(OpenProjectWindowExecuteCommand);
-            CancelCreateProjectCommand = new LamdaCommand(OpenProjectWindowExecuteCommand);
-            CreateProject = new LamdaCommand(CreateProjectCommand);
+            OpenCreateProjectWindow = new OpenCreateProjectWindowCommand(this);
+            OpenProjectWindow = new OpenProjectWindowCommand(this);
+            CreateProjectCommand = new LamdaCommand(CreateProjectExecuteCommand);
         }
 
-        public string CreateProjects(ProjectTemplate template)
+        public string CreateProject(ProjectTemplate template)
         {
             if (!ValidateProjectPath())
                 return string.Empty;
@@ -88,26 +84,15 @@ namespace SkyForgeEditor.ViewModel
             }
         }
 
-        private void CreateProjectCommand(object sender)
+        private void CreateProjectExecuteCommand(object sender)
         {
             var template = sender as ProjectTemplate;
-            var projectPath = CreateProjects(template);
+            var projectPath = CreateProject(template);
             var dialogResult = !string.IsNullOrEmpty(projectPath);
             var win = Window.GetWindow(m_dependencyWindow);
             win.DialogResult = dialogResult;
             win.Close();
         }
-
-        private void OpenCreateProjectWindowExecuteCommand(object sender)
-        {
-            PositionWidnowStack = POSITION_WINDOW_CREATE_PROJECT;
-        }
-
-        private void OpenProjectWindowExecuteCommand(object sender)
-        {
-            PositionWidnowStack = POSITION_WINDOW_PROJECT;
-        }
-
 
         private void LoadTemplateProject()
         {
