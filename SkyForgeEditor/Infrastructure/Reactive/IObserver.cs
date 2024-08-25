@@ -2,9 +2,8 @@
    Copyright SkyForge Corporation. All Rights Reserved.
 \**************************************************************************/
 
-using System;
 
-namespace HavocAndSouls.Infrastructure.Reactive
+namespace SkyForgeEngine.Infrastructure.Reactive
 {
     public interface IObserver<in T> : IDisposable
     {

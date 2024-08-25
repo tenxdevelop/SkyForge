@@ -2,7 +2,7 @@
    Copyright SkyForge Corporation. All Rights Reserved.
 \**************************************************************************/
 
-namespace HavocAndSouls.Infrastructure.Reactive
+namespace SkyForgeEngine.Infrastructure.Reactive
 {
     public class ReactiveSubscriptionCollection<T> : IBinding
     {

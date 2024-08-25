@@ -2,24 +2,12 @@
    Copyright SkyForge Corporation. All Rights Reserved.
 \**************************************************************************/
 
-using UnityEngine;
-
-namespace HavocAndSouls.Infrastructure.Reactive
+namespace SkyForgeEngine.Infrastructure.Reactive
 {
     public static class ReactivePropertyExtention
     {
 
         //ReactiveProperty
-        public static void UpdateValue(this ReactiveProperty<Vector3> reactiveProperty, object sender, Vector3 value)
-        {
-            reactiveProperty.SetValue(sender, reactiveProperty.Value + value);
-        }
-
-        public static void UpdateValue(this ReactiveProperty<Vector3> reactiveProperty, Vector3 value)
-        {
-            reactiveProperty.SetValue(null, reactiveProperty.Value + value);
-        }
-
         public static void UpdateValue(this ReactiveProperty<int> reactiveProperty, object sender, int value)
         {
             reactiveProperty.SetValue(sender, reactiveProperty.Value + value);

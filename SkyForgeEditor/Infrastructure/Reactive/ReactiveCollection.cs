@@ -2,10 +2,9 @@
    Copyright SkyForge Corporation. All Rights Reserved.
 \**************************************************************************/
 
-using System.Collections.Generic;
 using System.Collections;
 
-namespace HavocAndSouls.Infrastructure.Reactive
+namespace SkyForgeEngine.Infrastructure.Reactive
 {
     public class ReactiveCollection<T> : IReactiveCollection<T>
     {

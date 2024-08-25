@@ -2,9 +2,7 @@
    Copyright SkyForge Corporation. All Rights Reserved.
 \**************************************************************************/
 
-using System;
-
-namespace HavocAndSouls.Infrastructure
+namespace SkyForgeEngine.Infrastructure
 {
     public abstract class DIEntry
     {

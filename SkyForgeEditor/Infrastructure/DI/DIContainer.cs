@@ -2,12 +2,9 @@
    Copyright SkyForge Corporation. All Rights Reserved.
 \**************************************************************************/
 
-using HavocAndSouls.Infrastructure;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
+using SkyForgeEngine.Infrastructure;
 
-namespace HavocAndSouls
+namespace SkyForgeEngine
 {
     public class DIContainer
     {
@@ -60,9 +57,8 @@ namespace HavocAndSouls
 
             if (m_cachedKey.Contains(key))
             {
-#if UNITY_EDITOR
-                Debug.LogWarning($"factory with key: {key} is already being searched in the DIcontainer");
-#endif
+
+                //TODO: get to the log error warning "Debug.LogWarning($"factory with key: {key} is already being searched in the DIcontainer");"
                 return default(T);
             }
 
@@ -116,12 +112,7 @@ namespace HavocAndSouls
         {
             var result = m_container.ContainsKey(key);
 
-#if UNITY_EDITOR
-            if (result)
-            {
-                Debug.LogWarning($"{typeof(T).Name} contains with key: {key} in the DIcontainer");
-            }
-#endif
+            //TODO: get to the log error warning "Debug.LogWarning($"{typeof(T).Name} contains with key: {key} in the DIcontainer");"
             return result;
         }
     }

@@ -2,9 +2,8 @@
    Copyright SkyForge Corporation. All Rights Reserved.
 \**************************************************************************/
 
-using System;
 
-namespace HavocAndSouls.Infrastructure
+namespace SkyForgeEngine.Infrastructure
 {
     public class DIEntrySingleton<T> : DIEntry<T>
     {
