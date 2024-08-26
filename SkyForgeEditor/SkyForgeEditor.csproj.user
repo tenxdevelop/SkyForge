@@ -10,7 +10,10 @@
     <Compile Update="Views\Windows\MainWIndow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Windows\ProjectBrowserWIndow.xaml.cs">
+    <Compile Update="Views\Windows\Hub\ProjectBrowserWIndow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Windows\Hub\ProjectsPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -18,7 +21,10 @@
     <Page Update="Views\Windows\MainWIndow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Windows\ProjectBrowserWIndow.xaml">
+    <Page Update="Views\Windows\Hub\ProjectBrowserWIndow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Windows\Hub\ProjectsPage.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

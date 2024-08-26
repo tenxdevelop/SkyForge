@@ -10,18 +10,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace SkyForgeEditor.Views.Windows
 {
     /// <summary>
-    /// Логика взаимодействия для ProjectBrowserWIndow.xaml
+    /// Логика взаимодействия для ProjectsPage.xaml
     /// </summary>
-    public partial class ProjectBrowserWIndow : Window
+    public partial class ProjectsPage : Page
     {
-        public ProjectBrowserWIndow()
+        public ProjectsPage()
         {
             InitializeComponent();
+        }
+
+        private void StackPanel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Application.Current.MainWindow.DragMove();
         }
     }
 }

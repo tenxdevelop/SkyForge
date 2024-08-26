@@ -8,11 +8,11 @@
         mc:Ignorable="d"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
-        Title="SkyForge Hub" Height="450" Width="800">
+        Title="SkyForge Hub" Height="450" Width="800" WindowStyle="None" Background="DarkGray">
     <Window.DataContext>
         <vm:ProjectBrowserViewModel/>
     </Window.DataContext>
     <Grid>
-        
+        <Frame Content="{Binding CurrentPage.Value}" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>
