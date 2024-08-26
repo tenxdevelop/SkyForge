@@ -4,7 +4,7 @@
 
 using System.Collections;
 
-namespace SkyForgeEngine.Infrastructure.Reactive
+namespace SkyForgeEditor.Infrastructure.Reactive
 {
     public class ReactiveCollection<T> : IReactiveCollection<T>
     {

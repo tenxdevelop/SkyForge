@@ -3,7 +3,7 @@
 \**************************************************************************/
 
 
-namespace SkyForgeEngine.Infrastructure
+namespace SkyForgeEditor.Infrastructure
 {
     public class DIEntrySingleton<T> : DIEntry<T>
     {

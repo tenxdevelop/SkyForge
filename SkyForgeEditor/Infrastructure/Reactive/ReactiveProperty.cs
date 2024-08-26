@@ -2,20 +2,15 @@
    Copyright SkyForge Corporation. All Rights Reserved.
 \**************************************************************************/
 
-
-namespace SkyForgeEngine.Infrastructure.Reactive
+namespace SkyForgeEditor.Infrastructure.Reactive
 {
     public class ReactiveProperty<T> : IReactiveProperty<T>
     {  
-        public T Value => m_value;
+        public T Value { get => m_value; set => SetValue(null, value); }
 
         private T m_value;
         private List<IObserver<T>> m_observers;
-        public ReactiveProperty()
-        {
-            m_value = default(T);
-            m_observers = new List<IObserver<T>>();
-        }
+        public ReactiveProperty() : this(default(T)) { }
 
         public ReactiveProperty(T value)
         {
@@ -50,7 +45,7 @@ namespace SkyForgeEngine.Infrastructure.Reactive
             OnChanged(sender, value);
         }
 
-        private void OnChanged(object sender, T newValue)
+        protected virtual void OnChanged(object sender, T newValue)
         {
             foreach (var observer in m_observers)
                 observer.NotifyObservableChanged(sender, newValue);

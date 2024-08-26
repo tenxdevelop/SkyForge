@@ -3,7 +3,7 @@
 \**************************************************************************/
 
 
-namespace SkyForgeEngine.Infrastructure.Reactive
+namespace SkyForgeEditor.Infrastructure.Reactive
 {
     public interface IReactiveCollection<T> : IObservableCollection<T>, ICollection<T>
     {

@@ -2,7 +2,7 @@
    Copyright SkyForge Corporation. All Rights Reserved.
 \**************************************************************************/
 
-namespace SkyForgeEngine.Infrastructure
+namespace SkyForgeEditor.Infrastructure
 {
     public abstract class DIEntry
     {

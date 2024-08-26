@@ -2,9 +2,9 @@
    Copyright SkyForge Corporation. All Rights Reserved.
 \**************************************************************************/
 
-using SkyForgeEngine.Infrastructure;
+using SkyForgeEditor.Infrastructure;
 
-namespace SkyForgeEngine
+namespace SkyForgeEditor
 {
     public class DIContainer
     {
