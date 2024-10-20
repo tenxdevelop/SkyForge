@@ -5,22 +5,32 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkyForgeEditor", "SkyForgeEditor\SkyForgeEditor.csproj", "{76758F34-9946-4F70-B413-B71ACD034B14}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkyForgeEngine", "SkyForgeEngine\SkyForgeEngine.csproj", "{52CDC9B1-77C9-4A41-9CC7-8BE1863864C2}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SkyForgeEngine", "SkyForgeEngine\SkyForgeEngine.vcxproj", "{65BE81FC-C61E-4D71-8536-613047D1D6FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
 		Release|x64 = Release|x64
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{76758F34-9946-4F70-B413-B71ACD034B14}.Debug|x64.ActiveCfg = Debug|x64
 		{76758F34-9946-4F70-B413-B71ACD034B14}.Debug|x64.Build.0 = Debug|x64
+		{76758F34-9946-4F70-B413-B71ACD034B14}.Debug|x86.ActiveCfg = Debug|x64
+		{76758F34-9946-4F70-B413-B71ACD034B14}.Debug|x86.Build.0 = Debug|x64
 		{76758F34-9946-4F70-B413-B71ACD034B14}.Release|x64.ActiveCfg = Release|x64
 		{76758F34-9946-4F70-B413-B71ACD034B14}.Release|x64.Build.0 = Release|x64
-		{52CDC9B1-77C9-4A41-9CC7-8BE1863864C2}.Debug|x64.ActiveCfg = Debug|x64
-		{52CDC9B1-77C9-4A41-9CC7-8BE1863864C2}.Debug|x64.Build.0 = Debug|x64
-		{52CDC9B1-77C9-4A41-9CC7-8BE1863864C2}.Release|x64.ActiveCfg = Release|x64
-		{52CDC9B1-77C9-4A41-9CC7-8BE1863864C2}.Release|x64.Build.0 = Release|x64
+		{76758F34-9946-4F70-B413-B71ACD034B14}.Release|x86.ActiveCfg = Release|x64
+		{76758F34-9946-4F70-B413-B71ACD034B14}.Release|x86.Build.0 = Release|x64
+		{65BE81FC-C61E-4D71-8536-613047D1D6FD}.Debug|x64.ActiveCfg = Debug|x64
+		{65BE81FC-C61E-4D71-8536-613047D1D6FD}.Debug|x64.Build.0 = Debug|x64
+		{65BE81FC-C61E-4D71-8536-613047D1D6FD}.Debug|x86.ActiveCfg = Debug|Win32
+		{65BE81FC-C61E-4D71-8536-613047D1D6FD}.Debug|x86.Build.0 = Debug|Win32
+		{65BE81FC-C61E-4D71-8536-613047D1D6FD}.Release|x64.ActiveCfg = Release|x64
+		{65BE81FC-C61E-4D71-8536-613047D1D6FD}.Release|x64.Build.0 = Release|x64
+		{65BE81FC-C61E-4D71-8536-613047D1D6FD}.Release|x86.ActiveCfg = Release|Win32
+		{65BE81FC-C61E-4D71-8536-613047D1D6FD}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

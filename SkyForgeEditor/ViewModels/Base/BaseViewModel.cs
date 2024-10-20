@@ -1,4 +1,7 @@
-﻿
+﻿/**************************************************************************\
+   Copyright SkyForge Corporation. All Rights Reserved.
+\**************************************************************************/
+
 using SkyForgeEditor.Infrastructure.Reactive.WPF;
 using System.ComponentModel;
 
@@ -11,11 +14,11 @@ namespace SkyForgeEditor.ViewModels.Base
         public BaseViewModel()
         {
             var type = GetType();
-            var reactiveProperties = type.GetProperties().Where(property => typeof(IReactiveProperty).IsAssignableFrom(property.PropertyType));
+            var reactiveProperties = type.GetProperties().Where(property => typeof(IReactivePropertyWPF).IsAssignableFrom(property.PropertyType));
 
             foreach (var propertyInfo in reactiveProperties)
             {
-                var property = propertyInfo.GetValue(this) as IReactiveProperty;
+                var property = propertyInfo.GetValue(this) as IReactivePropertyWPF;
                 property?.Bind(this);
             }
         }

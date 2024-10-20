@@ -6,7 +6,7 @@ namespace SkyForgeEditor.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-        public ReactiveProperty<string> Title { get; private set; } = new();
+        public ReactivePropertyWPF<string> Title { get; private set; } = new();
 
         public MainViewModel()
         {

@@ -17,7 +17,12 @@
             <RowDefinition/>
             <RowDefinition Height="0.8cm"/>
         </Grid.RowDefinitions>
-        <StackPanel Background="DimGray" Grid.Row="0" Orientation="Horizontal" MouseLeftButtonDown="StackPanel_MouseLeftButtonDown">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2.5*"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <!-- Header Panel -->
+        <StackPanel Background="DimGray" Grid.ColumnSpan="2" Grid.Row="0" Orientation="Horizontal" MouseLeftButtonDown="StackPanel_MouseLeftButtonDown">
             <Button Background="Gray" Foreground="White" 
                   Content="Settings" FontSize="10" 
                   Margin="5, 3, 0, 2" Width="50"/>
@@ -31,8 +36,29 @@
                   Command="{Binding CloseApplicationCommand}"/>
         </StackPanel>
         
-        
-        <StackPanel Background="DimGray" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+        <!-- Create Panel -->
+        <StackPanel Background="DimGray" Grid.Column="1" Grid.Row="1" Orientation="Vertical">
+            <!--Image Panel -->
+            
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="200">
+                
+            </StackPanel>
+            <!-- Name Project Panel -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Name" Width="40" Foreground="White"/>
+                <TextBox Width="150" Text="{Binding NewNameProject.Value, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+            <!-- Path Project Panel -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Path" Width="40" Foreground="White"/>
+                <TextBox Width="110" Text=""/>
+                <Button Background="Gray" Foreground="White"
+                        Content="Browse" FontSize="10"
+                        Margin="4, 0, 0, 0"/>
+            </StackPanel>
+        </StackPanel>
+        <!-- Floor Panel-->
+        <StackPanel Background="DimGray" Grid.ColumnSpan="2" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Background="Gray" Foreground="White" 
                     Content="Cancel" FontSize="10" Width="60" 
                     Margin="650, 3, 0, 2"

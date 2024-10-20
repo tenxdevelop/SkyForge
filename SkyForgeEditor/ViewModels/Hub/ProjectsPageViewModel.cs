@@ -1,4 +1,7 @@
-﻿
+﻿/**************************************************************************\
+   Copyright SkyForge Corporation. All Rights Reserved.
+\**************************************************************************/
+
 using SkyForgeEditor.Infrastructure.Extentions.Commands;
 using SkyForgeEditor.ViewModels.Base;
 using System.Windows.Input;

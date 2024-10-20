@@ -1,13 +1,16 @@
-﻿
+﻿/**************************************************************************\
+   Copyright SkyForge Corporation. All Rights Reserved.
+\**************************************************************************/
+
 using SkyForgeEditor.ViewModels.Base;
 using System.Runtime.CompilerServices;
 
 namespace SkyForgeEditor.Infrastructure.Reactive.WPF
 {
-    public class ReactiveProperty<T> : Reactive.ReactiveProperty<T>, IReactiveProperty
+    public class ReactivePropertyWPF<T> : ReactiveProperty<T>, IReactivePropertyWPF
     {
         private string m_propertyName;
-        public ReactiveProperty([CallerMemberName] string propertyName = null)
+        public ReactivePropertyWPF([CallerMemberName] string propertyName = null)
         {
             m_propertyName = propertyName;
         }
@@ -18,7 +21,7 @@ namespace SkyForgeEditor.Infrastructure.Reactive.WPF
         }
     }
 
-    public interface IReactiveProperty
+    public interface IReactivePropertyWPF
     {
         void Bind(BaseViewModel viewModel);
     }
